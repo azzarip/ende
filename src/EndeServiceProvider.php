@@ -21,6 +21,7 @@ class EndeServiceProvider extends PackageServiceProvider
 
         $router = app(\Illuminate\Routing\Router::class);
         $router->aliasMiddleware('force.locale', \Azzarip\Ende\Http\Middleware\ForceLocale::class);
+        $router->aliasMiddleware('locale', \Azzarip\Ende\Http\Middleware\Locale::class);
 
     }
 }
