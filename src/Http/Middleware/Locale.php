@@ -17,7 +17,7 @@ class Locale
      */
     public function handle(Request $request, Closure $next, $locale = null): Response
     {
-        if(is_null($locale)) {
+        if (is_null($locale)) {
             $locale = $this->getLocale();
         } else {
             $this->forceLocale($locale);
@@ -28,7 +28,8 @@ class Locale
         return $next($request);
     }
 
-    protected function getLocale() {
+    protected function getLocale()
+    {
         if (! Session::has('locale')) {
 
             if (! Cookie::has('locale')) {
@@ -45,6 +46,7 @@ class Locale
 
         return Session::get('locale');
     }
+
     protected function getBrowserLocale()
     {
         $langs = explode(',', request()->header('Accept-Language'));
@@ -59,8 +61,9 @@ class Locale
         return 'en'; // default to English if no language is found;
     }
 
-    protected function forceLocale($locale) {
-        if(Session::get('locale') != $locale) {
+    protected function forceLocale($locale)
+    {
+        if (Session::get('locale') != $locale) {
             Session::put('locale', $locale);
             Cookie::queue('locale', $locale, 525600, null, null, false, false);
         }
