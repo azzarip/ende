@@ -18,5 +18,9 @@ class EndeServiceProvider extends PackageServiceProvider
     public function bootingPackage()
     {
         EncryptCookies::except('locale');
+
+        $router = app(\Illuminate\Routing\Router::class);
+        $router->aliasMiddleware('force.locale', \Azzarip\Ende\Http\Middleware\ForceLocale::class);
+
     }
 }
