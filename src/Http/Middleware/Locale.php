@@ -17,14 +17,19 @@ class Locale
      */
     public function handle(Request $request, Closure $next): Response
     {
+
         if (! Session::has('locale')) {
 
             if (! Cookie::has('locale')) {
                 $locale = $this->getBrowserLocale($request);
+                Session::put('locale', $locale);
+                Cookie::queue('locale', $locale, 525600, null, null, false, false);
             } else {
                 Session::put('locale', Cookie::get('locale'));
             }
+
         }
+
         $locale = Session::get('locale');
         app()->setLocale($locale);
 
@@ -37,11 +42,10 @@ class Locale
         foreach ($langs as $lang) {
             $xx = substr($lang, 0, 2);
             if (in_array($xx, ['de', 'en'])) {
-                Session::put('locale', $xx);
-                Cookie::queue('locale', $xx, 525600, null, null, false, false);
 
-                return;
+                return $xx;
             }
         }
+        return 'en'; // default to English if no language is found;
     }
 }

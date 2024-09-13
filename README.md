@@ -1,60 +1,17 @@
 # Laravel Package for En/De Tranlations
+This package allows the translation from DE to EN and viceversa.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/azzarip/ende.svg?style=flat-square)](https://packagist.org/packages/azzarip/ende)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/azzarip/ende/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/azzarip/ende/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/azzarip/ende/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/azzarip/ende/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/azzarip/ende.svg?style=flat-square)](https://packagist.org/packages/azzarip/ende)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+## Docs
 
-## Support us
+### Middleware
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/ende.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/ende)
+#### Locale
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+The `Azzarip\Ende\Http\Middleware\Locale` middleware changes the locale via session and cookie, it reads the current locale from the browser.
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
-## Installation
 
-You can install the package via composer:
-
-```bash
-composer require azzarip/ende
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="ende-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="ende-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="ende-views"
-```
-
-## Usage
-
-```php
-$ende = new Azzarip\Ende();
-echo $ende->echoPhrase('Hello, Azzarip!');
-```
 
 ## Testing
 
