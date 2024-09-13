@@ -2,8 +2,8 @@
 
 namespace Azzarip\Ende;
 
-use Spatie\LaravelPackageTools\Package;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class EndeServiceProvider extends PackageServiceProvider

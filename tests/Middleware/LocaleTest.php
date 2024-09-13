@@ -28,7 +28,6 @@ it('gets locale from cookie if no session', function () {
 });
 
 it('gets locale from browser if no cookie', function () {
-
     $this->withHeader('Accept-Language', 'de')->get('/test');
 
     expect(Session::get('locale'))->toBe('de');
