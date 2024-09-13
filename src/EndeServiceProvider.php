@@ -3,19 +3,20 @@
 namespace Azzarip\Ende;
 
 use Spatie\LaravelPackageTools\Package;
+use Illuminate\Cookie\Middleware\EncryptCookies;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class EndeServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('ende')
             ->hasConfigFile();
+    }
+
+    public function bootingPackage()
+    {
+        EncryptCookies::except('locale');
     }
 }
