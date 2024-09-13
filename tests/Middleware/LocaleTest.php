@@ -4,8 +4,10 @@ use function Pest\Laravel\get;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use Azzarip\Ende\Http\Middleware\Locale;
+
+use function Pest\Laravel\get;
 
 beforeEach(function () {
     Route::middleware(['web', Locale::class])->get('/test', function () {
