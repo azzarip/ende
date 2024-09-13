@@ -17,12 +17,12 @@ class ForceLocale
      */
     public function handle(Request $request, Closure $next, $locale): Response
     {
-        if(Session::get('locale') != $locale) {
+        if (Session::get('locale') != $locale) {
             Session::put('locale', $locale);
             Cookie::queue('locale', $locale, 525600, null, null, false, false);
         }
         app()->setLocale($locale);
+
         return $next($request);
     }
-
 }
