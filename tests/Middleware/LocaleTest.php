@@ -1,10 +1,10 @@
 <?php
 
-use function Pest\Laravel\get;
-use Illuminate\Support\Facades\Route;
-
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+
+use function Pest\Laravel\get;
 
 beforeEach(function () {
     Route::middleware(['web', Locale::class])->get('/test', function () {
@@ -35,9 +35,9 @@ it('gets locale from browser if no cookie', function () {
 });
 
 it('defaults to english if no locale is set', function () {
-$this->get('/test');
+    $this->get('/test');
 
-expect(Session::get('locale'))->toBe('en');
-expect(Cookie::hasQueued('locale'))->toBe(true);
-expect(app()->getLocale())->toBe('en');
+    expect(Session::get('locale'))->toBe('en');
+    expect(Cookie::hasQueued('locale'))->toBe(true);
+    expect(app()->getLocale())->toBe('en');
 });

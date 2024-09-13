@@ -46,6 +46,7 @@ class Locale
                 return $xx;
             }
         }
+
         return 'en'; // default to English if no language is found;
     }
 }
