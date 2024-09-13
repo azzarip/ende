@@ -15,30 +15,39 @@ class Locale
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, $locale = null): Response
     {
-
-        if (! Session::has('locale')) {
-
-            if (! Cookie::has('locale')) {
-                $locale = $this->getBrowserLocale($request);
-                Session::put('locale', $locale);
-                Cookie::queue('locale', $locale, 525600, null, null, false, false);
-            } else {
-                Session::put('locale', Cookie::get('locale'));
-            }
-
+        if(is_null($locale)) {
+            $locale = $this->getLocale();
+        } else {
+            $this->forceLocale($locale);
         }
 
-        $locale = Session::get('locale');
         app()->setLocale($locale);
 
         return $next($request);
     }
 
-    protected function getBrowserLocale(Request $request)
+    protected function getLocale() {
+        if (! Session::has('locale')) {
+
+            if (! Cookie::has('locale')) {
+                $locale = $this->getBrowserLocale();
+                Session::put('locale', $locale);
+                Cookie::queue('locale', $locale, 525600, null, null, false, false);
+            } else {
+                $locale = Cookie::get(key: 'locale');
+                Session::put('locale', $locale);
+            }
+
+            return $locale;
+        }
+
+        return Session::get('locale');
+    }
+    protected function getBrowserLocale()
     {
-        $langs = explode(',', $request->header('Accept-Language'));
+        $langs = explode(',', request()->header('Accept-Language'));
         foreach ($langs as $lang) {
             $xx = substr($lang, 0, 2);
             if (in_array($xx, ['de', 'en'])) {
@@ -48,5 +57,12 @@ class Locale
         }
 
         return 'en'; // default to English if no language is found;
+    }
+
+    protected function forceLocale($locale) {
+        if(Session::get('locale') != $locale) {
+            Session::put('locale', $locale);
+            Cookie::queue('locale', $locale, 525600, null, null, false, false);
+        }
     }
 }

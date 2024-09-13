@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 beforeEach(function () {
     Route::get('/test', function () {
         return response();
-    })->middleware(['web', 'force.locale:de']);
+    })->middleware(['web', 'locale:de']);
 });
 it('sets locale', function () {
     get('/test');
